@@ -1,2 +1,4 @@
 [config]
 command = deploy.cmd
+project = src
+TEST_VAR = hello
