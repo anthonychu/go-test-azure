@@ -62,13 +62,15 @@ IF /I "%IN_PLACE_DEPLOYMENT%" EQU "1" (
 
 
 SET GOVERSION=1.9.2
-SET GOROOT=%HOME%\go\%GOVERSION%\go
+SET GOBASE=%HOME%\go\%GOVERSION%
+SET GOROOT=%GOBASE%\go
 
 IF NOT EXIST %GOROOT% (
     ECHO Download Go
     curl -LO https://redirector.gvt1.com/edgedl/go/go%GOVERSION%.windows-amd64.zip
     ECHO Unzip Go
-    unzip -q go%GOVERSION%.windows-amd64.zip -d %GOROOT%
+    mkdir %GOBASE%
+    unzip -q go%GOVERSION%.windows-amd64.zip -d %GOBASE%
     del go%GOVERSION%.windows-amd64.zip
 )
 ECHO GOROOT %GOROOT%
