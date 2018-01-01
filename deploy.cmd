@@ -70,8 +70,10 @@ IF NOT EXIST %GOEXE% (
     ECHO Download Go
     curl -LO https://redirector.gvt1.com/edgedl/go/go%GOVERSION%.windows-amd64.zip
     ECHO Unzip Go
-    mkdir %GOBASE%
-    unzip go%GOVERSION%.windows-amd64.zip -d %GOBASE%
+    IF NOT EXIST %GOBASE% (
+        mkdir %GOBASE%
+    )
+    unzip -uo go%GOVERSION%.windows-amd64.zip -d %GOBASE%
     del go%GOVERSION%.windows-amd64.zip
 )
 ECHO GOROOT %GOROOT%
