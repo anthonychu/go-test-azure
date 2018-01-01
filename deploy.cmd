@@ -64,13 +64,14 @@ IF /I "%IN_PLACE_DEPLOYMENT%" EQU "1" (
 SET GOVERSION=1.9.2
 SET GOBASE=%HOME%\go\%GOVERSION%
 SET GOROOT=%GOBASE%\go
+SET GOEXE="%GOROOT%\bin\go.exe"
 
-IF NOT EXIST %GOROOT% (
+IF NOT EXIST %GOEXE% (
     ECHO Download Go
     curl -LO https://redirector.gvt1.com/edgedl/go/go%GOVERSION%.windows-amd64.zip
     ECHO Unzip Go
     mkdir %GOBASE%
-    unzip -q go%GOVERSION%.windows-amd64.zip -d %GOBASE%
+    unzip go%GOVERSION%.windows-amd64.zip -d %GOBASE%
     del go%GOVERSION%.windows-amd64.zip
 )
 ECHO GOROOT %GOROOT%
@@ -78,7 +79,6 @@ ECHO GOROOT %GOROOT%
 :: Create Go workspace in DEPLOYMENT_TEMP
 ::      DEPLOYMENT_TEMP\bin, DEPLOYMENT_TEMP\pkg, DEPLOYMENT_TEMP\src
 SET GOPATH=%DEPLOYMENT_TEMP%\gopath
-SET GOEXE="%GOROOT%\bin\go.exe"
 SET FOLDERNAME=azureapp
 SET GOAZUREAPP=%DEPLOYMENT_TEMP%\gopath\src\%FOLDERNAME%
 
