@@ -1,4 +1,4 @@
 [config]
-command = deploy.cmd
-project = src
-TEST_VAR = hello
+command=deploy.cmd
+project=src
+GOVERSION=1.9.2
